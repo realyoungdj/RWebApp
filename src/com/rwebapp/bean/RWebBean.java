@@ -5,9 +5,15 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name="RWebBean")
+import org.rosuda.REngine.REXP;
+import org.rosuda.REngine.REXPMismatchException;
+import org.rosuda.REngine.Rserve.RConnection;
+import org.rosuda.REngine.Rserve.RserveException;
 
+@ManagedBean(name="RWebBean")
 public class RWebBean {
+	private RConnection rc;
+	
 	
 	private double carPrice;
 	private List<Double> priceList;
@@ -24,7 +30,16 @@ public class RWebBean {
 	}
 	
 	private void createRConnection() {
-		
+		try {
+			rc = new RConnection();
+		} catch (RserveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private String createRS() {
+		return null;
 	}
 	
 	// getter and setter
@@ -54,7 +69,7 @@ public class RWebBean {
 	
 	// Bean Method
 	public String addCarPrice() {
-		// check User Input
+		// validate User Input
 		
 		priceList.add(new Double(this.getCarPrice()));
 		this.inputPriceString += this.getCarPrice() + " ";
@@ -62,6 +77,8 @@ public class RWebBean {
 	}
 	
 	public String showRGraphic() {
+		this.createRS();
+		
 		return null;
 	}
 	

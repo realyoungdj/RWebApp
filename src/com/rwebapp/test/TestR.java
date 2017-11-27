@@ -2,17 +2,19 @@ package com.rwebapp.test;
 
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
+import org.rosuda.REngine.REngineException;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
 public class TestR {
-	public static void main(String[] args) throws RserveException, REXPMismatchException {
+	public static void main(String[] args) throws REXPMismatchException, REngineException {
 		// Before run this program, 
 		// Start Rserve in RStudio.
 		// Rserve(args)
 		// to shutdown, in command line 
 		// killall Rserve
 		RConnection c = new RConnection();
+		/*
 		REXP x = c.eval("seq(-5, 5, by=.5)");
 		if (x.isVector())
 		{
@@ -21,5 +23,11 @@ public class TestR {
 			for (int i = 0; i < tmp.length; i++)
 			System.out.println(tmp[i]);
 		}
+		*/
+		// Test to save image
+		c.eval("cars <- c(4,1,9,3,10,4.5,8.7,200)");
+		c.eval("png(file = '/Users/jia/Project/workspace/RWebApp/WebContent/temp.png')");
+		c.parseAndEval("plot(cars, type=\"o\", col=\"blue\");dev.off()");
+
 	}
 }
