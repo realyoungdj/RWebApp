@@ -13,9 +13,9 @@ public class TestR {
 		// Rserve(args)
 		// to shutdown, in command line 
 		// killall Rserve
-		RConnection c = new RConnection();
+		RConnection rc = new RConnection();
 		/*
-		REXP x = c.eval("seq(-5, 5, by=.5)");
+		REXP x = rc.eval("seq(-5, 5, by=.5)");
 		if (x.isVector())
 		{
 			System.out.println("vector");
@@ -25,9 +25,9 @@ public class TestR {
 		}
 		*/
 		// Test to save image
-		c.eval("cars <- c(4,1,9,3,10,4.5,8.7,200)");
-		c.eval("png(file = '/Users/jia/Project/workspace/RWebApp/WebContent/temp.png')");
-		c.parseAndEval("plot(cars, type=\"o\", col=\"blue\");dev.off()");
+		rc.eval("cars <- c(4,1,9,3,10,4.5,8.7,200)");
+		rc.eval("png(file = '/Users/jia/Project/workspace/RWebApp/WebContent/temp.png')");
+		rc.parseAndEval("plot(cars, type=\"o\", col=\"blue\");dev.off()");
 
 	}
 }
