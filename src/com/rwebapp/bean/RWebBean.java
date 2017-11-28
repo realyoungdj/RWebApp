@@ -19,6 +19,7 @@ public class RWebBean {
 	private double carPrice;
 	private List<Double> priceList;
 	private String inputPriceString;
+	private String inputRString;
 	private Boolean renderImageFlag;
 
 	public RWebBean() {
@@ -29,6 +30,7 @@ public class RWebBean {
 	private void initData() {
 		priceList = new ArrayList<>();
 		inputPriceString = "User Input: ";
+		inputRString = "";
 		renderImageFlag = false;
 	}
 	
@@ -44,10 +46,13 @@ public class RWebBean {
 	private String createRS() {
 		
 		try {
-			rc.eval("file.remove(file = '/Users/jia/Project/workspace/RWebApp/WebContent/temp.png')");
-			rc.eval("cars <- c(4,1,9,3,10,4.5,8.7,30)");
-			rc.eval("png(file = '/Users/jia/Project/workspace/RWebApp/WebContent/temp.png')");
-			rc.parseAndEval("plot(cars, type=\"o\", col=\"blue\");dev.off()");
+			if (!this.inputRString.equals("") && (this.inputRString.length() > 0)) {
+				String tmp = "cars <- c(" + this.inputRString + ")";
+				rc.eval(tmp);
+				rc.eval("png(file = '/Users/jia/Project/temp/temp.png')");
+				rc.parseAndEval("plot(cars, type=\"o\", col=\"blue\");dev.off()");
+			}
+			
 		} catch (RserveException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,7 +105,11 @@ public class RWebBean {
 		// validate User Input
 		
 		priceList.add(new Double(this.getCarPrice()));
-		this.inputPriceString += this.getCarPrice() + " ";
+		this.inputPriceString += this.getCarPrice() + ", ";
+		if (this.inputRString.equals(""))
+			this.inputRString += this.getCarPrice();
+		else
+			this.inputRString += "," + this.getCarPrice();
 		renderImageFlag = false;
 		return null;
 	}
@@ -109,19 +118,21 @@ public class RWebBean {
 		this.createRS();
 		
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.renderImageFlag = true;
-		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("rPlotImage");
+		
 		return null;
 	}
 	
 	public String deleteAllData() {
 		priceList.clear();
 		this.inputPriceString = "User Input: ";
+		this.inputRString = "";
+		this.renderImageFlag = false;
 		return null;
 	}
 }

@@ -9,6 +9,23 @@
 	<title>R Web App</title>
 </h:head>
 <h:body>
+	<p>
+	<h2>Load Data File</h2>
+<!-- 	Table Filter -->	
+	<h:form>
+	<table>
+		<tr>
+			<td><h:outputLabel for="inputPath">
+					<h:outputText id="pathLabel" value="Path" />
+				</h:outputLabel></td>
+			<td><h:inputText id="inputPath" value=""
+					size="20" /></td>
+			<td><h:commandButton id="loadFile" value="Load">
+				</h:commandButton></td>
+		</tr>
+	</table>
+	</h:form>
+	</p>
 	<h2>Input R Data</h2>
 <!-- 	Table Filter -->	
 	<h:form>
@@ -39,7 +56,7 @@
 			<h:outputText id="showInput" value="#{RWebBean.inputPriceString}" />
 	</h:outputLabel>
 	<p>
-	<h:graphicImage id="rPlotImage" value="temp.png" rendered="#{RWebBean.renderImageFlag}"/>
+	<h:graphicImage id="rPlotImage" value="/images/dynamic/?file=temp.png" rendered="#{RWebBean.renderImageFlag}"/>
 	</p>
 </h:body>
 </html>
