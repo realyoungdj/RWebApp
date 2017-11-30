@@ -12,7 +12,7 @@ import org.rosuda.REngine.REngineException;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 
-@ManagedBean(name="RWebBean")
+@ManagedBean(name="rWebBean")
 public class RWebBean {
 	private RConnection rc;
 	
@@ -44,7 +44,7 @@ public class RWebBean {
 	}
 	
 	private String createRS() {
-		
+		// This code is used to load r plot image
 		try {
 			if (!this.inputRString.equals("") && (this.inputRString.length() > 0)) {
 				String tmp = "cars <- c(" + this.inputRString + ")";

@@ -5,9 +5,14 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
     <managed-bean>
-    		<managed-bean-name>RWebBean</managed-bean-name>
+    	<managed-bean-name>rWebBean</managed-bean-name>
     		<managed-bean-class>com.rwebapp.bean.RWebBean</managed-bean-class>
     		<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>rPredictBean</managed-bean-name>
+    	<managed-bean-class>com.rwebapp.bean.RPredictBean</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
 </faces-config>

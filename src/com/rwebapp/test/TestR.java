@@ -31,12 +31,7 @@ public class TestR {
 		rc.eval("png(file = '/Users/jia/Project/workspace/RWebApp/WebContent/temp.png')");
 		rc.parseAndEval("plot(cars, type=\"o\", col=\"blue\");dev.off()");*/
 		
-		REXP x = rc.eval("getwd()");
-		System.out.println(x.asString());
-		String current = new java.io.File( "." ).getCanonicalPath();
-        System.out.println("Current dir:"+current);
-        String currentDir = System.getProperty("user.dir");
-        System.out.println("Current dir using System:" +currentDir);
+
 
 	}
 }
